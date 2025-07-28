@@ -13,6 +13,7 @@ LogDao logdao = new LogDao();
 	
 	
 	public List<MemberDTO> getAllMember() {
+		
 		return memberdao.getAllMember();
 	}
 	

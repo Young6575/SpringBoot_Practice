@@ -15,12 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.pnu.domain.MemberDTO;
 import edu.pnu.service.MemberService;
 
-
 @RestController
 @RequestMapping("/api")
 public class MemberController {
-	private MemberService service = new MemberService();  
 
+MemberService service = new MemberService();
 	
 	@GetMapping("/member")
 	public List<MemberDTO> getAllMember() {
@@ -33,30 +32,28 @@ public class MemberController {
 	}
 	
 	@PostMapping("/member")
-	public MemberDTO postMember(@RequestBody MemberDTO memberDTO) {
-		return service.postMember(memberDTO); 
+	public String postMember(@RequestBody MemberDTO memberDTO) {
+		return service.postMember(memberDTO);
 	}
 	
 	@PutMapping("/member/{id}")
-	public MemberDTO putMember(@PathVariable Integer id,
+	public String putMember(@PathVariable Integer id,
 							   @RequestBody MemberDTO memberDTO) {
 		
 		return service.putMember(id, memberDTO);			
 	}
 	
 	@PatchMapping("/member/{id}") // 수정(Update – 일부 정보 수정)
-	public MemberDTO patchMember(@PathVariable Integer id,
+	public String patchMember(@PathVariable Integer id,
 								 @RequestBody MemberDTO memberDTO) {
 		return service.patchMember(id, memberDTO);							
-	}
-
-	
+	}	
 	
 	
 	@DeleteMapping("/member/{id}") // 삭제(Delete - delete)
 	public void deleteMember(@PathVariable Integer id) {
 		service.deleteMember(id);
 	}
-
-
+	
+	
 }
