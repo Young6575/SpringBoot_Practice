@@ -36,13 +36,15 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 	@Query("select b.seq, b.title, b.writer, b.createDate from Board b where b.title like %?1% order by b.seq desc")
 	List<Object[]> queryAnnotationTest3(String searchKeyword);
 	
-	@Query("select new com.rubypaper.domain.dto.BoardDTO(b.seq, b.title, b.writer)"
+	// Board객체로 바로 전달받기
+	@Query("select new com.rubypaper.domain.dto.BoardDTO(b.seq, b.title, b.writer)" // bean객체 양식에 따라 풀주소 적기!
 		+ "from Board b "
 		+ "where b.title like %:searchKeyword% order by b.seq desc")
 	List<BoardDTO> queryAnnotationTest4(String searchKeyword);
 	
+	// 네이티브 쿼리사용 --> 잘 사용안함(DB마다 바꿔줘야해서) 
 	@Query(value="select seq,title,writer,create_date from board where title like '%'||:searchKeyword||'%' "
-			+ "order by seq desc", nativeQuery = true)
+			+ "order by seq desc", nativeQuery = true) 
 	List<Object[]> queryAnnotationTest5(String searchKeyword);
 	
 	@Query("select b from Board b order by b.seq desc")
