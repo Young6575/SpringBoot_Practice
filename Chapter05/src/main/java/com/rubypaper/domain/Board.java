@@ -29,6 +29,6 @@ public class Board {
 	private String writer;
 	private String content;
 	@Temporal(value=TemporalType.TIMESTAMP)
-	private Date createDate;
+	private Date createDate; // 테이블 생성 시 CamelNotation일 경우 create_date로 변경됨.
 	private Long cnt;
 }
