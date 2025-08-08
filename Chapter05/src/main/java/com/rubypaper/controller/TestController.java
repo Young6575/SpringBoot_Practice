@@ -45,7 +45,7 @@ public class TestController {
 						  @RequestBody Board board) {
 		
 		board.setSeq(seq);
-		return boardRepo.save(board);
+		return boardRepo.save(board); 
 	}
 	
 	@PatchMapping("board/{seq}")
